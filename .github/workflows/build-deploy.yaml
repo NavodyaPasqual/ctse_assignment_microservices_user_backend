@@ -1,5 +1,6 @@
 name: Docker Build Deploy
 
+
 on:
   push:
     branches: [ main ]
@@ -26,9 +27,10 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/ctse-microservice:${{github.sha}}
     - name: Update config files in k8s
-      run: sed -i.bak 's/{{tag}}/word2/g' k8s/deploy.yaml && rm k8s/*.bak
+      run: sed -i.bak 's/{{tag}}/${{github.sha}}/g' k8s/deploy.yaml && rm k8s/*.bak
     - uses: actions-hub/kubectl@master
       env:
         KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       with:
         args: apply -f ./k8s
+        
