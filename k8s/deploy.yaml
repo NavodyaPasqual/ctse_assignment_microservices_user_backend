@@ -25,7 +25,7 @@ spec:
         app: ctse-micro
     spec:
       containers:
-      - image: navodyapasqual25/ctse-microservice:c40f2d6ae09fdfdd46afc10190c2b7daa363b45f
+      - image: navodyapasqual25/ctse-microservice:{{tag}}
         imagePullPolicy: Always
         name: ctse-microservice
         resources: {}
