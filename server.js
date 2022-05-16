@@ -32,6 +32,10 @@ mongoose.connect(
     }
 );
 
+application.get('/', (req, res) => {
+    res.send('Welcome to Enviro Mart!');
+})
+
 //Middleware
 application.use(express.json());
 //Route middleware
