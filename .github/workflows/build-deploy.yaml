@@ -1,5 +1,4 @@
 name: Docker Build Deploy
-
 on:
   push:
     branches: [ main ]
@@ -10,8 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: run shell script
-      run: echo commit hash is ${{github.sha}}
+    # - name: run shell script
+    #   run: echo commit hash is ${{github.sha}}
 
     - name: Login to Docker Hub
       uses: docker/login-action@v1
@@ -24,9 +23,9 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/ctse-microservice:${{github.sha}}
-    - uses: actions-hub/kubectl@master
-      env:
-        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-      with:
-        args: get namespaces
+        tags: ${{ secrets.DOCKER_USERNAME }}/microservices-k8s:latest
+    # - uses: actions-hub/kubectl@master
+    #   env:
+    #     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+    #   with:
+    #     args: get namespaces
